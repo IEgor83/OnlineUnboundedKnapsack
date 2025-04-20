@@ -20,9 +20,8 @@ class UnboundedOnlineKnapsack:
         Генерируем случайный порог на основе случайных битов.
         Чем больше битов, тем лучше разрешение.
         """
-        max_value = (1 << bits) - 1  # Максимум по битам
+        max_value = (1 << bits) - 1
         random_bits = random.randint(0, max_value)
-        # Порог будет в интервале [0.5, 1]
         threshold = 0.5 + (random_bits / max_value) * 0.5
         return threshold
 
@@ -68,15 +67,12 @@ class UnboundedOnlineKnapsack:
         if value is None:
             value = size
 
-        # Проверяем, есть ли место
         if self.current_fill >= self.capacity:
             self.decisions.append((0, size))
             return 0
 
         random.seed(size)
         random_number = random.random()
-        print('random_number', random_number)
-        print('threshold', self.threshold)
 
         if not self.has_selected_item:
             if random_number >= self.threshold:
